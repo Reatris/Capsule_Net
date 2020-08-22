@@ -4,7 +4,7 @@ Geoffrey Hinton，深度学习的开创者之一，反向传播等神经网络�
 
 论文[https://arxiv.org/pdf/1710.09829.pdf](https://arxiv.org/pdf/1710.09829.pdf)
             
-![](https://ai-studio-static-online.cdn.bcebos.com/7a885d651bd6415bbe6826015723bc14ab1d4c1e9dc542579c2ff03294951a04)
+ https://ai-studio-static-online.cdn.bcebos.com/7a885d651bd6415bbe6826015723bc14ab1d4c1e9dc542579c2ff03294951a04
 
 
 Geoffrey Hinton的胶囊网络（Capsule Network）一经发布就震动了整个人工智能领域，它将卷积神经网络（CNN）的极限提升到一个新的水平。这种网络基于一种被Hinton称为胶囊（capsule）的结构。 此外，他还发表了囊间动态路由算法，用来训练新提出的胶囊网络。让我们一起来看看他的这种网络结构和原理。
@@ -16,12 +16,12 @@ Capsule网络结构，不仅可以和卷积神经网络一样用来处理视觉�
 
 * CNN（卷积神经网络）的表现是如此优异，以至于深度学习现在如此流行。但是把检测目标的平移，旋转，加上边框等干扰会被CNN识别成其他目标，列如CNN会认为下图的三个R是不同的字母，如果使用暴力方法，把各个角度的样本都囊括进去，这样使得CNN所需的训练集要变得很大，而数据增强技术虽然有用，但提升有限，无法从根本上解决问题。
 
-![](https://ai-studio-static-online.cdn.bcebos.com/ef4e879245f14d33ae1b606cc0bcb04170fe0efbd2054d20a05abc1dae7ebd63)
+ https://ai-studio-static-online.cdn.bcebos.com/ef4e879245f14d33ae1b606cc0bcb04170fe0efbd2054d20a05abc1dae7ebd63
 
 
 让我们再考虑一个非常简单的例子。如下图，如果有一张脸，那么它是由哪些特征构成的？椭圆的轮廓、眼睛、鼻子和一个嘴巴。CNN可以轻而易举地检测到这些特征，并且因此认为它检测到的是脸。但是当你用CNN去识别右边这张脸(眼睛和嘴巴位置改变了)依然会得到同样的结果。这是因为CNN识别脸时，仅仅只识别脸的几个特征部分，右图中的确有两个眼睛，一个鼻子，一张嘴，虽然位置不对，但是CNN一旦检测到这些特征，那么识别结果是就是脸， CNN是不会注意子结构之间关系的。
 
-![](https://ai-studio-static-online.cdn.bcebos.com/968b9c6420834a2392e89f4c6fee3a563f7a47e5c41942979eb9171acffea59b)
+ https://ai-studio-static-online.cdn.bcebos.com/968b9c6420834a2392e89f4c6fee3a563f7a47e5c41942979eb9171acffea59b
 
 
 究其原因是CNN的主要部分是卷积层，用于检测图像像素中的重要特征。较深的层（更接近输入的层）将学习检测诸如边缘和颜色渐变之类的简单特征，而较高的层则将简单特征组合成复杂一些的特征。最后，网络顶部的致密层组合高层特征并输出分类预测。
@@ -32,7 +32,7 @@ Capsule网络结构，不仅可以和卷积神经网络一样用来处理视觉�
 
 
 
-![](https://ai-studio-static-online.cdn.bcebos.com/1b02268e441d4d969c9dfaf16dc3121f7834eb75e61f4bfca5ac2120399909e2)
+ https://ai-studio-static-online.cdn.bcebos.com/1b02268e441d4d969c9dfaf16dc3121f7834eb75e61f4bfca5ac2120399909e2
 
 正因为卷积神经网络神经元之间都是平等的，缺少一种内部结构，所以对不同位置、角度下的同一个物品可能做出不同识别，更无法表现子结构之间的关系。CNN中采用的分块和共享权重的方法，以使其够使神经网络学到的特征提取能够在图形出现微小变化时能够应对，而不是针对图形的变化，对应神经网络进行相应的改变，而这正是capsule神经网络所要做的。
 
@@ -44,13 +44,13 @@ Hinton主张，为了正确地分类和辨识对象，保留对象部件间的�
 当在神经网络里面构建了这些关系之后，模型就能非常容易理解他看到的是以前的东西，只不过是另一个视角而已。从下面的图片中你可以轻易辨识出这是自由女神像，尽管所有的图像显示的角度都不一样。这是因为你脑中的自由女神像的内部表示并不依赖视角。你大概从没有见过和这些一模一样的图片，但你仍然能立刻知道这是自由女神像。
 
 
-![](https://ai-studio-static-online.cdn.bcebos.com/037eb95ea3dc4e53837579cd3b03756c0c9c1f5e8dd6418da085f14b23b1720d)
+ https://ai-studio-static-online.cdn.bcebos.com/037eb95ea3dc4e53837579cd3b03756c0c9c1f5e8dd6418da085f14b23b1720d
 
 但是对CNN而言，这个任务非常难，因为它没有内建对三维空间的理解。而对于胶囊神经网络而言，这个任务要容易得多，因为它显式地建模了这些关系。相比之前最先进的方法，使用CapsNet的论文能够将错误率降低，这是一个巨大的提升。胶囊方法的另一大益处在于，相比CNN需要的数据，它只需要学习一小部分数据，就能达到最先进的效果（Hinton在他关于CNN错误的著名演说中提到了这一点）。 从这个意义上说，胶囊理论实际上更接近人脑的行为。为了学会区分数字，人脑只需要几十个例子，最多几百个例子。而CNN则需要几万个例子才能取得很好的效果。这看起来像是在暴力破解，显然要比我们的大脑低级。
 
 下图为胶囊神经网络的位姿辨别效果
 
-![](https://ai-studio-static-online.cdn.bcebos.com/6899882519aa46b284908b6764a4fecd44f6f09f30964e8d962daab8d9936396)
+ https://ai-studio-static-online.cdn.bcebos.com/6899882519aa46b284908b6764a4fecd44f6f09f30964e8d962daab8d9936396
 
 和其他模型相比，胶囊网络在辨识上一列和下一列的图片属于同一类、仅仅视角不同方面，表现要好很多，相对于CNN这是压倒性的优势
 
@@ -74,7 +74,7 @@ Hinton主张，为了正确地分类和辨识对象，保留对象部件间的�
 
 让我们比较下胶囊与人造神经元。下表中Vector表示向量，scalar表示标量，Operation中对比了它们工作原理的差异。
 
-![](https://ai-studio-static-online.cdn.bcebos.com/854f186b6446428ab2b6784e4bdfcd11f7d7d70922bc49ea8d6a4327cd282a9b)
+ https://ai-studio-static-online.cdn.bcebos.com/854f186b6446428ab2b6784e4bdfcd11f7d7d70922bc49ea8d6a4327cd282a9b
 
 图中Vector表示向量，scalar表示标量，Operation中对比了它们的不同工作原理
 
@@ -103,7 +103,7 @@ Hinton主张，为了正确地分类和辨识对象，保留对象部件间的�
 # 1.输入向量的矩阵乘法
 
 
-![](https://ai-studio-static-online.cdn.bcebos.com/5a43f7e99cb444ca9e3e6a303da9bba9fefd2e32c180400eac70d97882bdec67)
+ https://ai-studio-static-online.cdn.bcebos.com/5a43f7e99cb444ca9e3e6a303da9bba9fefd2e32c180400eac70d97882bdec67
 
 
 胶囊接收的输入向量（上图中的U1、U2和U3）来自下层的3个胶囊。这些向量的长度分别编码下层胶囊检测出的相应特征的概率，向量的方向则编码检测出的特征的一些内部状态。让我们假定下层的胶囊分别检测眼睛、嘴巴和鼻子，而输出胶囊检测面部。接着将这些向量乘以相应的权重矩阵W，W编码了低层特征（眼睛、嘴巴和鼻子）和高层特征（面部）之间的空间关系和其他重要关系。乘以这些矩阵后，我们得到的是高层特征的状态（位置，方向，大小等），你也可以理解为，û1表示根据检测出的眼睛的位置，面部应该在什么位置，û2表示根据检测出的嘴巴的位置，面部应该在什么位置，û3表示根据检测出的鼻子的位置，面部应该在什么位置。如果这3个胶囊输出对象（面部）位置相同，那么就可以将这3个输出编码出一个更高层的特征(同时关于眼睛、嘴巴、鼻子、面部的关系特征）
@@ -115,7 +115,7 @@ Hinton主张，为了正确地分类和辨识对象，保留对象部件间的�
 
 之前的人造神经元是通过反向传播算法一步步调整权重优化网络，而胶囊则有所不同
 
-![](https://ai-studio-static-online.cdn.bcebos.com/46700a79bd1349f9b66be71a9c872c31e983f1ad91e34f34be50fafc0c0c867a)
+ https://ai-studio-static-online.cdn.bcebos.com/46700a79bd1349f9b66be71a9c872c31e983f1ad91e34f34be50fafc0c0c867a
 
 
 上图中，左右分别是高层的两个不同胶囊，方形区域内的点则是下层胶囊输入在这个胶囊的分布，一个低层胶囊需要“决定”将它的输出发送给哪个高层胶囊。它将通过调整权重C做出决定，胶囊在发送输出前，先将输出乘以这个权重。胶囊将决定是把输出发给左边的胶囊J，还是发给右边的胶囊K。
@@ -144,7 +144,7 @@ Hinton主张，为了正确地分类和辨识对象，保留对象部件间的�
 
 CapsNet的另一大创新是新颖的非线性激活函数，这个函数接受一个向量，然后在不改变方向的前提下，压缩它的长度到1以下。
 
-![](https://ai-studio-static-online.cdn.bcebos.com/ce20ab13bad746ccbc5aef7033328a0cade49546e16c4d27bb4b42b9945a371b)
+ https://ai-studio-static-online.cdn.bcebos.com/ce20ab13bad746ccbc5aef7033328a0cade49546e16c4d27bb4b42b9945a371b
 
 *  ▲||Sj||表示模长
 
@@ -174,7 +174,7 @@ def squash(self,vector):
 
 * 低层胶囊将其输出发送给对此表示“同意”的高层胶囊。这是动态路由算法的精髓。
 
-![](https://ai-studio-static-online.cdn.bcebos.com/06275f20518648f883611e087ef7889117af8655dc784e1ebd33b8e50077d901)
+ https://ai-studio-static-online.cdn.bcebos.com/06275f20518648f883611e087ef7889117af8655dc784e1ebd33b8e50077d901
 
 
 **▲囊间动态路由算法伪代码**
@@ -230,13 +230,13 @@ b_ij += fluid.layers.reduce_sum(u_v_produce,dim=0,keep_dim=True)
 ```
 
 
-![](https://ai-studio-static-online.cdn.bcebos.com/5bffe77ab8cc41a28168b7fc76ad7f82334452a35c3647338494ff5f3510a850)
+ https://ai-studio-static-online.cdn.bcebos.com/5bffe77ab8cc41a28168b7fc76ad7f82334452a35c3647338494ff5f3510a850
 
 
 **▲点积运算即为向量的内积（点积）运算，可以表现向量的相似性,点积运算接收两个向量，并输出一个标量。对于给定长度但方向不同的两个向量而言，点积有几种情况：
 a正值（夹角小于90°）；b零（夹角垂直）；c负值（夹角大于180°）**
 
-![](https://ai-studio-static-online.cdn.bcebos.com/b0ae75024fae430798196c7b4c9deb9a1c1fd6f0bd4e4e12b97073b5784ecd5c)
+ https://ai-studio-static-online.cdn.bcebos.com/b0ae75024fae430798196c7b4c9deb9a1c1fd6f0bd4e4e12b97073b5784ecd5c
 
 上图中，两个高层胶囊的输出用向量v1和v2表示。橙色向量表示接收自某个低层胶囊的输入，其他黑色向量表示接收自其他低层胶囊的输入。
 
@@ -251,7 +251,7 @@ a正值（夹角小于90°）；b零（夹角垂直）；c负值（夹角大于1
 
 训练时，对于每个训练样本，根据下面的公式计算每个胶囊向量的损失值，然后将10个损失值相加得到最终损失。这是一个监督学习，所以每个训练样本都有正确的标签，在这种情况下，它将是一个10维one-hot编码向量，该向量由9个零和1个一（正确标签）组成。在损失函数公式中，与正确的标签对应的输出胶囊，系数Tc为1
 
-![](https://ai-studio-static-online.cdn.bcebos.com/f050bc29f2f543859a3150df60c5360577a75f87eb4446bc8a2186d14941d06f)
+ https://ai-studio-static-online.cdn.bcebos.com/f050bc29f2f543859a3150df60c5360577a75f87eb4446bc8a2186d14941d06f
 
 如果正确标签是9，这意味着第9个胶囊输出的损失函数的Tc为1，其余9个为0。
 
@@ -292,7 +292,7 @@ a正值（夹角小于90°）；b零（夹角垂直）；c负值（夹角大于1
 
 完整的网络结构分为编码器和解码器，我们先来看看编码器
 
-![](https://ai-studio-static-online.cdn.bcebos.com/676f8fe58d314c279caae90caa68fc328c89e47f390a4060bc8a5c9b19f83d1a)
+ https://ai-studio-static-online.cdn.bcebos.com/676f8fe58d314c279caae90caa68fc328c89e47f390a4060bc8a5c9b19f83d1a
 
 
 1.输入图片28x28首先经过1x256x9x9的卷积层 获得256个20x20的特征图
@@ -329,7 +329,7 @@ class Capconv_Net(fluid.dygraph.Layer):
 从实现代码中我们不难看出特征图转换成向量实际的过程是将每组二维矩阵展开成一维矩阵（当然有多个二维矩阵则展开后前后拼接）
 之后再将所有组的一维矩阵在新的维度拼接形成向量（下图为示意图）
 
-![](https://ai-studio-static-online.cdn.bcebos.com/24199562bf27462d97975f34b85639cc6044139c82d54966989e2a59360a7057)
+ https://ai-studio-static-online.cdn.bcebos.com/24199562bf27462d97975f34b85639cc6044139c82d54966989e2a59360a7057
 
 
 当然向量化的方法我认为可以有所改进：
@@ -384,13 +384,13 @@ print(e.numpy())
 
 # 解码器
 
-![](https://ai-studio-static-online.cdn.bcebos.com/72a0f0a9a4b64d3395a3eeeda888966214e61d30c0b8434b8376249f8131d9bc)
+ https://ai-studio-static-online.cdn.bcebos.com/72a0f0a9a4b64d3395a3eeeda888966214e61d30c0b8434b8376249f8131d9bc
 
 解码器从正确的胶囊中接受一个16维向量，并学习将其解码为数字图像（它在训练时仅使用正确的胶囊向量，忽略不正确的）。解码器被用来作为正则子，它接受正确胶囊的输出作为输入，并学习重建一张28×28像素的图像，损失函数为重建图像与输入图像之间的欧氏距离。解码器强制胶囊学习对重建原始图像有用的特征。重建图像越接近输入图像越好。
 
 下图是我自己训练的网络重构获得的图像，上面是输入网络的原图片，下面是网络输出rebuild的图片
 
-![](https://ai-studio-static-online.cdn.bcebos.com/047bbb59d3c74621a756a3f45048f0f83899bfd5fe4748a7b59713c734295acf)
+ https://ai-studio-static-online.cdn.bcebos.com/047bbb59d3c74621a756a3f45048f0f83899bfd5fe4748a7b59713c734295acf
 
 
 
@@ -913,13 +913,13 @@ with fluid.dygraph.guard():
 
 **说了这么多胶囊神经网络性能到底如何呢，让我们用同规模CNN+最大池化层来对比下对比一下**
 
-![](https://ai-studio-static-online.cdn.bcebos.com/aa8bc4d29c8246cf9c12113174893f58aa71e06b16894ee894dba4434debedb9)
+ https://ai-studio-static-online.cdn.bcebos.com/aa8bc4d29c8246cf9c12113174893f58aa71e06b16894ee894dba4434debedb9
 
 这是两个网络在其他条件相同情况下进行的1800次迭代，一开始胶囊神经网络起步慢，但是结果很明显胶囊神经网络更加稳定，CNN+池化层准确率波动不小
 
 **再来试一下，当训练到一半时将所有输入网络的图片转置（你可以理解为将数字翻转，改变位姿）的情况**
 
-![](https://ai-studio-static-online.cdn.bcebos.com/0181eee5f2d9445da1c58316e99f663a180bdaeacbd945f7ba0c87b268c8127f)
+ https://ai-studio-static-online.cdn.bcebos.com/0181eee5f2d9445da1c58316e99f663a180bdaeacbd945f7ba0c87b268c8127f
 
 
 * 可以明显的看到CNN+池化层在图片转置的情况下准确率直接跌落谷底，在之后的训练中也是一蹶不振（迷失了自我）！
@@ -927,7 +927,7 @@ with fluid.dygraph.guard():
 * 但是胶囊神经网络就不一样了，面对截然不同的图片仍然有高于50%的正确率，而且在之后迅速恢复了100%的正确率！甩了CNN+池化层一大截！Capsule显露了它处理不同位姿的本领
 
 **胶囊数量和向量维度对性能的影响**
-![](https://ai-studio-static-online.cdn.bcebos.com/d6324887d5654a7aa3a55a169e1578ff6df1fa73ce5a49eca5f0682ea62d5fcf)
+ https://ai-studio-static-online.cdn.bcebos.com/d6324887d5654a7aa3a55a169e1578ff6df1fa73ce5a49eca5f0682ea62d5fcf
 
 
 # 总结
